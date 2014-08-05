@@ -48,7 +48,7 @@ if(!empty($url_to_shorten) && preg_match('|^https?://|', $url_to_shorten))
 		$shortened_url = getShortenedURLFromID(mysql_insert_id());
 		mysql_query('UNLOCK TABLES');
 	}
-	echo BASE_HREF . $shortened_url;
+	echo $shortened_url;
 }
 
 function getShortenedURLFromID ($integer, $base = ALLOWED_CHARS)
