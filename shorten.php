@@ -44,11 +44,22 @@ if(!empty($url_to_shorten) && preg_match('|^https?://|', $url_to_shorten))
 	{
 		// URL not in database, insert
 		mysql_query('LOCK TABLES ' . DB_TABLE . ' WRITE;');
-		mysql_query('INSERT INTO ' . DB_TABLE . ' (long_url, created, creator) VALUES ("' . mysql_real_escape_string($url_to_shorten) . '", "' . time() . '", "' . mysql_real_escape_string($_SERVER['REMOTE_ADDR']) . '")');
+		$get = true;
+		while($get){
+			$code = getCode();
+			$long_url = mysql_result(mysql_query('SELECT long_url FROM ' . DB_TABLE . ' WHERE code="' . $code . '"'), 0, 0);
+			if (strlen($long_url)==0) $get = false;
+		}
+		mysql_query('INSERT INTO ' . DB_TABLE . ' (code, long_url, created, creator) VALUES ("'. $code .'", "'. mysql_real_escape_string($url_to_shorten) . '", "' . time() . '", "' . mysql_real_escape_string($_SERVER['REMOTE_ADDR']) . '")');
 		$shortened_url = getShortenedURLFromID(mysql_insert_id());
 		mysql_query('UNLOCK TABLES');
 	}
-	echo $shortened_url;
+	echo $code;
+}
+
+function getCode(){
+	$code = mt_rand(1000, 9999);
+	return $code;
 }
 
 function getShortenedURLFromID ($integer, $base = ALLOWED_CHARS)
