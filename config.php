@@ -7,9 +7,9 @@
  */
 
 // db options
-define('DB_NAME', 'oplotforum');
-define('DB_USER', 'oplotforum');
-define('DB_PASSWORD', 'oplotforum');
+define('DB_NAME', 'oplot');
+define('DB_USER', 'oplot');
+define('DB_PASSWORD', 'oplot');
 define('DB_HOST', 'localhost');
 define('DB_TABLE', 'shortenedurls');
 
@@ -18,7 +18,7 @@ mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 mysql_select_db(DB_NAME);
 
 // base location of script (include trailing slash)
-define('BASE_HREF', 'http://phpnetflow.com/short/');
+define('BASE_HREF', 'http://domain.ru/short/');
 
 // change to limit short url creation to a single IP
 define('LIMIT_TO_IP', $_SERVER['REMOTE_ADDR']);
