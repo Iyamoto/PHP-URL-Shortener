@@ -64,7 +64,6 @@ function getCode(){
 
 function getShortenedURLFromID ($integer, $base = ALLOWED_CHARS)
 {
-	$out = '';
 	$length = strlen($base);
 	while($integer > $length - 1)
 	{
