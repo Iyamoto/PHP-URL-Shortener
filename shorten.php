@@ -5,7 +5,7 @@
  * Contact the author at http://briancray.com/
  */
  
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 
 $url_to_shorten = get_magic_quotes_gpc() ? stripslashes(trim($_REQUEST['longurl'])) : trim($_REQUEST['longurl']);
 
